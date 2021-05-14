@@ -7,6 +7,10 @@
 #define SUCESSO 1
 #define FRACASSO 0
 
+int testaVaziaABB(pABB p){
+    return !p->raiz;
+}
+
 int criaABB(ppABB pp, int tamInfo){
     *pp = malloc(sizeof(ABB));
     if(*pp){
@@ -18,5 +22,30 @@ int criaABB(ppABB pp, int tamInfo){
         return FRACASSO;
         
     }
+}
+
+int insereABB(pABB p, void *novo, int (* cmp)(void *p1, void *p2)){
+        NoABB *noArvore = malloc(sizeof(NoABB));
+        if(!noArvore){
+            return FRACASSO;
+        }
+
+        noArvore->dados = novo;
+        noArvore->direita = NULL;
+        noArvore->esquerda = NULL;
+
+        if(testaVaziaABB(p)){
+            noArvore->pai = NULL;
+            p->raiz = noArvore;
+        }
+
+}
+
+int percursoPreOrdem(pABB pa, void (* processa)(void *p)){
+    if(testaVaziaABB(pa)){
+        return FRACASSO;
+    }
     
+
+
 }
