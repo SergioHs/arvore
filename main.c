@@ -28,10 +28,22 @@ int main() {
     int *novo = malloc(sizeof(int));
     *novo = 10;
 
+    int *novo1 = malloc(sizeof(int));
+    *novo = 21;
+
+    int *novo2 = malloc(sizeof(int));
+    *novo = 32;
+
     int isIserido = insereABB(pArvore, novo, cmp);
+    int isIserido1 = insereABB(pArvore, novo1, cmp);
+    int isIserido2 = insereABB(pArvore, novo2, cmp);
+
+    if(isIserido1 && isIserido && isIserido2){
+        printf("\n is insErido td \n");
+    }
 
     int percorreu = percursoPreOrdem(pArvore, processa);
 
-    printf("\n deu certo code: %d", percorreu); 
+    printf("\n ____>>>>> deu certo code: %d\n ", percorreu); 
     return 0;
 }
