@@ -7,6 +7,15 @@
 #define SUCESSO 1
 #define FRACASSO 0
 
+void percursoPreOrdemNo (NoABB *noArvore, void (* processa)(void *p)){
+    if(!noArvore){
+        return;
+    }
+    processa(noArvore->dados);
+    percursoPreOrdemNo(noArvore->esquerda, processa);
+    percursoPreOrdemNo(noArvore->direita, processa);
+}
+
 int testaVaziaABB(pABB p){
     return !p->raiz;
 }
@@ -38,14 +47,13 @@ int insereABB(pABB p, void *novo, int (* cmp)(void *p1, void *p2)){
             noArvore->pai = NULL;
             p->raiz = noArvore;
         }
-
 }
 
 int percursoPreOrdem(pABB pa, void (* processa)(void *p)){
     if(testaVaziaABB(pa)){
         return FRACASSO;
     }
-    
-
+    percursoPreOrdemNo(pa->raiz, processa);
+    return SUCESSO;
 
 }

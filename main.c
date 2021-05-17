@@ -1,6 +1,8 @@
 #include "arvore_interface.h"
 
 #include <stdio.h>
+#include <stdlib.h>
+
 
 int cmp (void *p1, void *p2){
     int *a = p1;
@@ -9,7 +11,7 @@ int cmp (void *p1, void *p2){
     return *a < *b;
 }
 
-int processa (void *p){
+void processa (void *p){
     int* dado = p;
     printf("\n%d", *dado);
 }
@@ -30,11 +32,6 @@ int main() {
 
     int percorreu = percursoPreOrdem(pArvore, processa);
 
-    // int valor1 = 10;
-    // int valor2 = 20;
-    // int res = cmp(&valor1, &valor2);
-    // printf("%d", res);
-
-    printf("\n deu certo :) "); 
+    printf("\n deu certo code: %d", percorreu); 
     return 0;
 }

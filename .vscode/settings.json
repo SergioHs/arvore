@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "arvore_interface.h": "c"
+        "arvore_interface.h": "c",
+        "stdio.h": "c"
     }
 }
