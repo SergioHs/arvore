@@ -7,12 +7,11 @@ int criaABB(ppABB pp, int tamInfo);
 int testaVaziaABB(pABB p);
 int insereABB(pABB p, void *novo, int (* cmp)(void *p1, void *p2));
 int percursoPreOrdem(pABB pa, void (* processa)(void *p));
+int percursoEmOrdem(pABB pa, void (* processa)(void *p));
+int percursoPosOrdem(pABB pa, void (* processa)(void *p));
 
 int destroiABB(ppABB pp);
 int reiniciaABB(pABB p);
 
 int removeABB(pABB p, void *item, int (* cmp)(void *p1, void *p2));
 int buscaABB(pABB p, void *item, int (* cmp)(void *p1, void *p2));
-
-int percursoEmOrdem(pABB pa, void (* processa)(void *p));
-int percursoPosOrdem(pABB pa, void (* processa)(void *p));

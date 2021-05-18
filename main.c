@@ -5,15 +5,15 @@
 
 
 int cmp (void *p1, void *p2){
-    int *a = p1;
-    int *b = p2;
+    char *a = p1;
+    char *b = p2;
 
     return *a < *b;
 }
 
 void processa (void *p){
-    int* dado = p;
-    printf("\n%d", *dado);
+    char* dado = p;
+    printf(" %c ", *dado);
 }
 
 
@@ -25,25 +25,26 @@ int main() {
         return 1;
     }
 
-    int *novo = malloc(sizeof(int));
-    *novo = 10;
+    char* letras = malloc(sizeof(char)*9);
 
-    int *novo1 = malloc(sizeof(int));
-    *novo = 21;
+    char* string = "FBADCEGIH";
 
-    int *novo2 = malloc(sizeof(int));
-    *novo = 32;
-
-    int isIserido = insereABB(pArvore, novo, cmp);
-    int isIserido1 = insereABB(pArvore, novo1, cmp);
-    int isIserido2 = insereABB(pArvore, novo2, cmp);
-
-    if(isIserido1 && isIserido && isIserido2){
-        printf("\n is insErido td \n");
+    int i;
+    for(i=0; i<9; i++){
+        letras[i] = string[i];
+        insereABB(pArvore, &letras[i], cmp);
     }
 
-    int percorreu = percursoPreOrdem(pArvore, processa);
+    printf("\n>>>>> Percurso Pre Ordem (RED): "); 
+    percursoPreOrdem(pArvore, processa);
 
-    printf("\n ____>>>>> deu certo code: %d\n ", percorreu); 
+    printf("\n>>>>>>> Percurso Em Ordem(ERD): "); 
+    percursoEmOrdem(pArvore, processa);
+
+    printf("\n>>>>> Percurso Pos Ordem (EDR): "); 
+    percursoPosOrdem(pArvore, processa);
+    printf("\n"); 
+
+
     return 0;
 }

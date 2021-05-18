@@ -16,6 +16,26 @@ void percursoPreOrdemNo (NoABB *noArvore, void (* processa)(void *p)){
     percursoPreOrdemNo(noArvore->direita, processa);
 }
 
+void percursoEmOrdemNo(NoABB *noArvore, void (* processa)(void *p)){
+    if(!noArvore){
+        return;
+    }
+    percursoEmOrdemNo(noArvore->esquerda, processa);
+    processa(noArvore->dados);
+    percursoEmOrdemNo(noArvore->direita, processa);
+}
+
+void percursoPosOrdemNo(NoABB *noArvore, void (* processa)(void *p)){
+    if(!noArvore){
+        return;
+    }
+    percursoPosOrdemNo(noArvore->esquerda, processa);
+    percursoPosOrdemNo(noArvore->direita, processa);
+    processa(noArvore->dados);
+}
+
+
+
 int insereNo (NoABB **noArvore, NoABB *noPai, void *dado, int (* cmp)(void *p1, void *p2)){
     if(!*noArvore){
         *noArvore = malloc(sizeof(NoABB));
@@ -68,4 +88,21 @@ int percursoPreOrdem(pABB pa, void (* processa)(void *p)){
     }
     percursoPreOrdemNo(pa->raiz, processa);
     return SUCESSO;
+}
+
+int percursoEmOrdem(pABB pa, void (* processa)(void *p)){
+    if(testaVaziaABB(pa)){
+        return FRACASSO;
+    }
+    percursoEmOrdemNo(pa->raiz, processa);
+    return SUCESSO;
+}
+
+int percursoPosOrdem(pABB pa, void (* processa)(void *p)){
+    if(testaVaziaABB(pa)){
+        return FRACASSO;
+    }
+    percursoPosOrdemNo(pa->raiz, processa);
+    return SUCESSO;
+
 }
