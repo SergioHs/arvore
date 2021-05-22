@@ -34,7 +34,20 @@ void percursoPosOrdemNo(NoABB *noArvore, void (* processa)(void *p)){
     processa(noArvore->dados);
 }
 
+int buscaNo(NoABB *NoABB, void *item, int (* cmp)(void *p1, void *p2)){
+    if(!NoABB){
+        return FRACASSO;
+    }
+    if(NoABB->dados == item){
+        return SUCESSO;
+    }
+    if(cmp(item, NoABB->dados)){
+        return buscaNo(NoABB->esquerda, item, cmp);
+    } else {
+        return buscaNo(NoABB->direita, item, cmp);
+    }
 
+}
 
 int insereNo (NoABB **noArvore, NoABB *noPai, void *dado, int (* cmp)(void *p1, void *p2)){
     if(!*noArvore){
@@ -104,5 +117,14 @@ int percursoPosOrdem(pABB pa, void (* processa)(void *p)){
     }
     percursoPosOrdemNo(pa->raiz, processa);
     return SUCESSO;
+
+}
+
+int buscaABB(pABB p, void *item, int (* cmp)(void *p1, void *p2)){
+        if(!p){
+            return FRACASSO;
+        }
+
+        return buscaNo(p->raiz, item, cmp);
 
 }

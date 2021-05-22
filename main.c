@@ -26,8 +26,10 @@ int main() {
     }
 
     char* letras = malloc(sizeof(char)*9);
-
     char* string = "FBADCEGIH";
+
+
+    printf("|------------PERCORRENDO------------|");
 
     int i;
     for(i=0; i<9; i++){
@@ -45,6 +47,27 @@ int main() {
     percursoPosOrdem(pArvore, processa);
     printf("\n"); 
 
+    printf("\n|---------------BUSCA---------------| \n");
+
+    int j;
+    int resultado;
+    for(j=0; j<9; j++){
+        resultado = buscaABB(pArvore, &letras[j], cmp);
+        if(resultado){
+            printf("Item buscado: %c - Encontrado.\n", letras[j]);
+        }
+
+    }
+
+    char* letraErrada = malloc(sizeof(char));
+    *letraErrada = 'X';
+
+    resultado = buscaABB(pArvore, letraErrada, cmp);
+    if(!resultado){
+        printf("Item buscado: %c - Nao Encontrado.\n", *letraErrada);
+    }
+
+    printf("|-------------------------------------| \n");
 
     return 0;
 }

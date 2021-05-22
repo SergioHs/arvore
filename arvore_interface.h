@@ -9,9 +9,9 @@ int insereABB(pABB p, void *novo, int (* cmp)(void *p1, void *p2));
 int percursoPreOrdem(pABB pa, void (* processa)(void *p));
 int percursoEmOrdem(pABB pa, void (* processa)(void *p));
 int percursoPosOrdem(pABB pa, void (* processa)(void *p));
+int buscaABB(pABB p, void *item, int (* cmp)(void *p1, void *p2));
 
 int destroiABB(ppABB pp);
 int reiniciaABB(pABB p);
 
 int removeABB(pABB p, void *item, int (* cmp)(void *p1, void *p2));
-int buscaABB(pABB p, void *item, int (* cmp)(void *p1, void *p2));
