@@ -16,6 +16,11 @@ void processa (void *p){
     printf(" %c ", *dado);
 }
 
+void deleta (void *p){
+
+    printf("delete");
+}
+
 
 int main() {
     pABB pArvore = NULL;
@@ -24,18 +29,23 @@ int main() {
         printf("deu ruim");
         return 1;
     }
+    
+    printf("|-------------------------------------|\n");
+    printf("|-------------INSERINDO---------------|\n");
 
     char* letras = malloc(sizeof(char)*9);
     char* string = "FBADCEGIH";
-
-
-    printf("|------------PERCORRENDO------------|");
 
     int i;
     for(i=0; i<9; i++){
         letras[i] = string[i];
         insereABB(pArvore, &letras[i], cmp);
     }
+
+    printf("> Itens Inseridos.\n");
+
+    printf("|-------------------------------------|\n");
+    printf("|------------PERCORRENDO--------------|\n");
 
     printf("\n>>>>> Percurso Pre Ordem (RED): "); 
     percursoPreOrdem(pArvore, processa);
@@ -47,7 +57,8 @@ int main() {
     percursoPosOrdem(pArvore, processa);
     printf("\n"); 
 
-    printf("\n|---------------BUSCA---------------| \n");
+    printf("|-------------------------------------| \n");
+    printf("|---------------BUSCANDO--------------| \n");
 
     int j;
     int resultado;
@@ -68,6 +79,22 @@ int main() {
     }
 
     printf("|-------------------------------------| \n");
+    printf("|--------REINICIA E DESTROI-----------| \n");
+
+    int reiniciou = reiniciaABB(pArvore);
+    if(reiniciou){
+        printf("> Árvore reiniciada.\n");
+    }
+
+    int percurso = percursoPosOrdem(pArvore, processa);
+    if(!percurso){
+        printf("> Percurso não realizado.\n");
+    }
+
+    int destruiu = destroiABB(pArvore);
+    if(destruiu){
+        printf("> Árvore destruida.\n");
+    }
 
     return 0;
 }
