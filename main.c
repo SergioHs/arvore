@@ -8,7 +8,13 @@ int cmp (void *p1, void *p2){
     char *a = p1;
     char *b = p2;
 
-    return *a < *b;
+    if(*a < *b){
+        return -1;
+    } else if (*a > *b){
+        return 1;
+    } else {
+        return 0;
+    }
 }
 
 void processa (void *p){
@@ -17,8 +23,8 @@ void processa (void *p){
 }
 
 void deleta (void *p){
-
     printf("delete");
+    
 }
 
 
@@ -33,13 +39,14 @@ int main() {
     printf("|-------------------------------------|\n");
     printf("|-------------INSERINDO---------------|\n");
 
-    char* letras = malloc(sizeof(char)*9);
+    char* letras[9];
     char* string = "FBADCEGIH";
 
     int i;
     for(i=0; i<9; i++){
-        letras[i] = string[i];
-        insereABB(pArvore, &letras[i], cmp);
+        letras[i] = malloc(sizeof(char));
+        *letras[i] = string[i];
+        insereABB(pArvore, letras[i], cmp);
     }
 
     printf("> Itens Inseridos.\n");
@@ -47,7 +54,7 @@ int main() {
     printf("|-------------------------------------|\n");
     printf("|------------PERCORRENDO--------------|\n");
 
-    printf("\n>>>>> Percurso Pre Ordem (RED): "); 
+    printf(">>>>> Percurso Pre Ordem (RED): "); 
     percursoPreOrdem(pArvore, processa);
 
     printf("\n>>>>>>> Percurso Em Ordem(ERD): "); 
@@ -63,9 +70,9 @@ int main() {
     int j;
     int resultado;
     for(j=0; j<9; j++){
-        resultado = buscaABB(pArvore, &letras[j], cmp);
+        resultado = buscaABB(pArvore, letras[j], cmp);
         if(resultado){
-            printf("Item buscado: %c - Encontrado.\n", letras[j]);
+            printf("Item buscado: %c - Encontrado.\n", *letras[j]);
         }
 
     }
@@ -77,6 +84,19 @@ int main() {
     if(!resultado){
         printf("Item buscado: %c - Nao Encontrado.\n", *letraErrada);
     }
+
+    printf("|-------------------------------------| \n");
+    printf("|-----------REMOVE UM NO--------------| \n");
+
+    printf(">Removendo nó %c ", *letras[2]);
+
+    if(removeABB(pArvore, letras[2], cmp)){
+        printf("\n>noArvore removido");
+    }
+
+    printf("\n>>>>>>> Percurso Em Ordem(ERD): "); 
+    percursoEmOrdem(pArvore, processa);
+    printf("\n");
 
     printf("|-------------------------------------| \n");
     printf("|--------REINICIA E DESTROI-----------| \n");
